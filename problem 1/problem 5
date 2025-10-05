@@ -1,0 +1,48 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("****** Welcome to AT&T Fiber Internet Billing System ******");
+
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Select internet plan speed (300 / 500 / 1000 / 2000 / 5000 Mbps): ");
+        int planSpeed = int.Parse(Console.ReadLine());
+
+        Console.Write("Would you like to add a static IP? (Y/N): ");
+        string ipChoice = Console.ReadLine().ToUpper();
+
+        // Base plan pricing
+        double basePrice = planSpeed switch
+        {
+            300 => 55.00,
+            500 => 65.00,
+            1000 => 80.00,
+            2000 => 110.00,
+            5000 => 180.00,
+            _ => 0.00
+        };
+
+        double staticIpCost = (ipChoice == "Y") ? 15.00 : 0.00;
+        double subtotal = basePrice + staticIpCost;
+        double tax = subtotal * 0.095;
+        double total = subtotal + tax;
+
+        // Output
+        Console.WriteLine("\n=========== AT&T FIBER BILLING SUMMARY ===========");
+        Console.WriteLine($"Customer Name:       {name}");
+        Console.WriteLine($"\nPlan Speed:          {planSpeed} Mbps");
+        Console.WriteLine($"Base Price:          ${basePrice:F2}");
+        Console.WriteLine($"Static IP:           ${staticIpCost:F2}");
+        Console.WriteLine("--------------------------------------------");
+        Console.WriteLine($"Subtotal:            ${subtotal:F2}");
+        Console.WriteLine($"Tax (9.5%):          ${tax:F2}");
+        Console.WriteLine("--------------------------------------------");
+        Console.WriteLine($"Total Due:           ${total:F2}");
+        Console.WriteLine("==================================================");
+        Console.WriteLine("Thank you for choosing AT&T Fiber!");
+    }
+}
