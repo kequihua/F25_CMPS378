@@ -1,0 +1,56 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("****** Welcome to the Road Trip Budget Estimator ******");
+
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("How many days will your trip be? ");
+        int days = int.Parse(Console.ReadLine());
+
+        Console.Write("How many miles will you drive in total? ");
+        double miles = double.Parse(Console.ReadLine());
+
+        Console.Write("What is your car's MPG? ");
+        double mpg = double.Parse(Console.ReadLine());
+
+        Console.Write("What is the average gas price per gallon? ");
+        double gasPrice = double.Parse(Console.ReadLine());
+
+        Console.Write("What is your nightly hotel cost? ");
+        double hotelCostPerNight = double.Parse(Console.ReadLine());
+
+        Console.Write("What is your daily food budget? ");
+        double foodPerDay = double.Parse(Console.ReadLine());
+
+        // Calculations
+        double gasNeeded = miles / mpg;
+        double gasCost = gasNeeded * gasPrice;
+        double hotelCost = hotelCostPerNight * (days - 1);
+        double foodCost = foodPerDay * days;
+        double totalCost = gasCost + hotelCost + foodCost;
+
+        // Output
+        Console.WriteLine("\n=========== ROAD TRIP BUDGET SUMMARY ===========");
+        Console.WriteLine($"Name:                 {name}");
+        Console.WriteLine($"Trip Duration:        {days} days");
+        Console.WriteLine($"Total Miles:          {miles} miles");
+        Console.WriteLine($"Fuel Efficiency:      {mpg} MPG");
+        Console.WriteLine($"Gas Price:            ${gasPrice:F2}");
+        Console.WriteLine($"Hotel Cost/Night:     ${hotelCostPerNight:F2}");
+        Console.WriteLine($"Daily Food Budget:    ${foodPerDay:F2}");
+        Console.WriteLine("-----------------------------------------------");
+        Console.WriteLine($"Gas Needed:           {gasNeeded:F2} gallons");
+        Console.WriteLine($"Estimated Gas Cost:   ${gasCost:F2}");
+        Console.WriteLine($"Estimated Hotel Cost: ${hotelCost:F2}");
+        Console.WriteLine($"Estimated Food Cost:  ${foodCost:F2}");
+        Console.WriteLine("-----------------------------------------------");
+        Console.WriteLine($"Estimated Trip Total: ${totalCost:F2}");
+        Console.WriteLine("===============================================");
+        Console.WriteLine("Thanks for using the Road Trip Budget Estimator!");
+    }
+}
