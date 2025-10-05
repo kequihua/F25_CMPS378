@@ -1,0 +1,54 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("****** Welcome to LADWP Utility Bill Calculator ******");
+
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Enter electricity usage in kWh: ");
+        int kWh = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter water usage in HCF: ");
+        int hcf = int.Parse(Console.ReadLine());
+
+        // Electricity rates
+        double elecRate = kWh switch
+        {
+            <= 199 => 0.13,
+            <= 499 => 0.17,
+            <= 999 => 0.21,
+            _ => 0.26
+        };
+        double elecCharge = kWh * elecRate;
+
+        // Water rates
+        double waterRate = hcf switch
+        {
+            <= 9 => 2.30,
+            <= 24 => 3.10,
+            <= 39 => 4.20,
+            _ => 5.15
+        };
+        double waterCharge = hcf * waterRate;
+
+        double total = elecCharge + waterCharge;
+
+        // Output
+        Console.WriteLine("\n=========== LADWP MONTHLY BILL ===========");
+        Console.WriteLine($"Customer Name:       {name}");
+        Console.WriteLine($"\nElectricity Usage:   {kWh} kWh");
+        Console.WriteLine($"Rate Applied:        ${elecRate:F2} per kWh");
+        Console.WriteLine($"Electricity Charge:  ${elecCharge:F2}");
+        Console.WriteLine($"\nWater Usage:         {hcf} HCF");
+        Console.WriteLine($"Rate Applied:        ${waterRate:F2} per HCF");
+        Console.WriteLine($"Water Charge:        ${waterCharge:F2}");
+        Console.WriteLine("------------------------------------------");
+        Console.WriteLine($"Total Amount Due:    ${total:F2}");
+        Console.WriteLine("==========================================");
+        Console.WriteLine("Thank you for using LADWP!");
+    }
+}
