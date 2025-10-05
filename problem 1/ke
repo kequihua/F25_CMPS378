@@ -1,0 +1,48 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("****** Welcome to the BMI Calculator ******");
+
+        // Ask user for inputs
+        Console.Write("Please enter your name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Please enter your age: ");
+        int age = int.Parse(Console.ReadLine());
+
+        Console.Write("Please enter your gender (male/female): ");
+        string gender = Console.ReadLine();
+
+        Console.Write("Please enter your height in feet: ");
+        int feet = int.Parse(Console.ReadLine());
+
+        Console.Write("Please enter your height in inches: ");
+        int inches = int.Parse(Console.ReadLine());
+
+        Console.Write("Please enter your weight in pounds: ");
+        double weight = double.Parse(Console.ReadLine());
+
+        // Convert to inches
+        int totalInches = (feet * 12) + inches;
+
+        // BMI calculation
+        double bmi = (703 * weight) / (totalInches * totalInches);
+
+        // Determine status
+        string status;
+        if (bmi < 18.5) status = "Underweight";
+        else if (bmi < 24.9) status = "Normal weight";
+        else if (bmi < 29.9) status = "Overweight";
+        else status = "Obese";
+
+        // Output results
+        Console.WriteLine($"\nHi {name},");
+        Console.WriteLine($"You are a {gender}. You are {age} years old.");
+        Console.WriteLine($"You are {feet}'{inches}\" and weigh {weight} pounds.");
+        Console.WriteLine($"Your BMI is {bmi:F2}, which is {status}.");
+        Console.WriteLine("\nThank you for using the BMI Calculator!");
+    }
+}
