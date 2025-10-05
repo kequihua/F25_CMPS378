@@ -1,0 +1,131 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("****** Birthday Date Meaning Generator ******\n");
+
+        while (true)
+        {
+            int month = ReadIntInRange("Enter your birth month (1-12): ", 1, 12);
+            int day = ReadIntInRange("Enter your birth day (1-31): ", 1, 31);
+            int year = ReadIntInRange("Enter your birth year (2000-2023): ", 2000, 2023);
+
+            string monthMeaning = GetMonthMeaning(month);
+            int dayNumber = ReduceToOneDigit(day);
+            string dayMeaning = GetDayMeaning(dayNumber);
+            string yearMeaning = GetYearMeaning(year);
+
+            Console.WriteLine("\n--- Results ---");
+            Console.WriteLine($"Month ({month}): {monthMeaning}");
+            Console.WriteLine($"Day ({day}): {dayMeaning}");
+            Console.WriteLine($"Year ({year}): {yearMeaning}");
+
+            Console.Write("\nDo you want to try another one? (Y/N): ");
+            string answer = Console.ReadLine()?.Trim().ToUpper() ?? "N";
+            if (answer != "Y") break;
+
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("\nThanks! Goodbye.");
+    }
+
+    static int ReadIntInRange(string prompt, int min, int max)
+    {
+        int value;
+        while (true)
+        {
+            Console.Write(prompt);
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out value) && value >= min && value <= max)
+                return value;
+            Console.WriteLine($"Please enter an integer between {min} and {max}.");
+        }
+    }
+
+    static int ReduceToOneDigit(int n)
+    {
+        while (n > 9)
+        {
+            int sum = 0;
+            while (n > 0)
+            {
+                sum += n % 10;
+                n /= 10;
+            }
+            n = sum;
+        }
+        return n;
+    }
+
+    static string GetMonthMeaning(int month)
+    {
+        switch (month)
+        {
+            case 1: return "January - independent, leadership, fresh starts.";
+            case 2: return "February - creative, intuitive, sensitive.";
+            case 3: return "March - empathetic, adaptable, artistic.";
+            case 4: return "April - energetic, decisive, action-oriented.";
+            case 5: return "May - curious, social, versatile.";
+            case 6: return "June - nurturing, communicative, responsible.";
+            case 7: return "July - protective, intuitive, family-focused.";
+            case 8: return "August - confident, ambitious, authoritative.";
+            case 9: return "September - analytical, detail-oriented, service-minded.";
+            case 10: return "October - diplomatic, charming, balance-seeking.";
+            case 11: return "November - intense, transformative, perceptive.";
+            case 12: return "December - generous, adventurous, optimistic.";
+            default: return "Unknown month.";
+        }
+    }
+
+    static string GetDayMeaning(int coreNumber)
+    {
+        switch (coreNumber)
+        {
+            case 1: return "Natural leader, independent, initiative.";
+            case 2: return "Diplomatic, cooperative, peacemaker.";
+            case 3: return "Expressive, social, creative communicator.";
+            case 4: return "Practical, disciplined, reliable.";
+            case 5: return "Adventurous, freedom-loving, adaptable.";
+            case 6: return "Responsible, caring, protector of home/family.";
+            case 7: return "Introspective, analytical, spiritual seeker.";
+            case 8: return "Ambitious, business-minded, success-oriented.";
+            case 9: return "Compassionate, humanitarian, idealistic.";
+            default: return "Unknown day.";
+        }
+    }
+
+    static string GetYearMeaning(int year)
+    {
+        switch (year)
+        {
+            case 2000: return "People born in 2000 are often described as having an old soul. Charismatic, intelligent, and confident, with natural leadership qualities but sometimes impatient.";
+            case 2001: return "Individuals from this year are often quick-witted, charismatic, and wise. Intelligent and private, though people find them irresistible.";
+            case 2002: return "Known for being loyal and protective, with a quick intellect and strong drive. Enthusiastic and cheerful but should be mindful of impulsive actions.";
+            case 2003: return "Artistic, gentle, and dreamy. Compassionate and peace-loving but sometimes anxious and resistant to change.";
+            case 2004: return "Inquisitive, clever, and energetic. Positive and fun-loving spirit but can also be cunning and prone to distraction.";
+            case 2005: return "Observant, hardworking, and courageous. Friendly and playful, but talkative nature may make them outspoken.";
+            case 2006: return "Thoughtful, honest, and loyal. Sincere and optimistic, but also stubborn.";
+            case 2007: return "Generous, hardworking, and honest. Patient and known for having a large circle of friends, though can be materialistic.";
+            case 2008: return "Charming, quick-witted, and resourceful. Talented and smart but can be private and frugal with money.";
+            case 2009: return "Gentle and warm-hearted, persistent and hardworking. Dependable but sometimes stubborn.";
+            case 2010: return "Brave, enthusiastic, and confident. Natural leaders, though sometimes unpredictable and irritable.";
+            case 2011: return "Lucky, gentle, and kind. Sensitive and peace-loving, preferring to avoid arguments.";
+            case 2012: return "Charismatic, confident, and intelligent. Outspoken and energetic, but may also be stubborn and demanding.";
+            case 2013: return "Intuitive, wise, and creative. Known for sharp insights but can be secretive and anxious.";
+            case 2014: return "Active, cheerful, and full of energy. Talkative and independent free spirit who loves freedom.";
+            case 2015: return "Gentle, artistic, and kind-hearted. Compassionate and creative but can be disorganized and pessimistic.";
+            case 2016: return "Clever, confident, and energetic. Often witty and adventurous but can also be irritable and opportunistic.";
+            case 2017: return "Honest, hardworking, and courageous. Perceptive and resourceful, sometimes flamboyant and outspoken.";
+            case 2018: return "Honest, loyal, with a strong sense of duty. Known to be stubborn, but can be a fair and effective leader.";
+            case 2019: return "Warm, honest, and kind. Good-natured and tolerant but can be naive and too trusting.";
+            case 2020: return "Intelligent, charming, and ambitious. Talented and quick-witted but may also have a short temper.";
+            case 2021: return "Dependable, hardworking, and patient. Strong and determined, but can also be quite stubborn.";
+            case 2022: return "Brave, confident, and enthusiastic. Flexible and patient but can also be rebellious and competitive.";
+            case 2023: return "Calm, gentle, and lucky. Sweet and empathetic, but can also be moody and overly sensitive.";
+            default: return "Unknown year.";
+        }
+    }
+}
