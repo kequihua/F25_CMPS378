@@ -1,81 +1,91 @@
 using System;
 
-namespace StreetFoodPOS
+namespace TacoLocoPOS
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Taco Loco Street Food POS System
-            Console.WriteLine("=== Taco Loco Street Food Truck POS ===\n");
+            // CMPS 378: C# Programming Fall 2025
+            // Problem 1: Street Food POS System
 
-            // display menu
+            Console.WriteLine("****** Welcome to Taco Loco POS System ******\n");
+
+            // Display menu
             Console.WriteLine("Menu:");
-            Console.WriteLine("A - 3 Tacos Combo ........... $7.00 (No Drink) / $9.00 (With Drink)");
-            Console.WriteLine("B - Burrito Meal ............ $8.50 (No Drink) / $10.50 (With Drink)");
-            Console.WriteLine("C - Quesadilla Special ...... $6.00 (No Drink) / $8.00 (With Drink)");
-            Console.WriteLine("D - Loaded Nachos ........... $5.75 (No Drink) / $7.75 (With Drink)");
-            Console.WriteLine();
+            Console.WriteLine("A - 3 Tacos Combo - $7.00 / $9.00 with drink");
+            Console.WriteLine("B - Burrito Meal - $8.50 / $10.50 with drink");
+            Console.WriteLine("C - Quesadilla Special - $6.00 / $8.00 with drink");
+            Console.WriteLine("D - Loaded Nachos - $5.75 / $7.75 with drink\n");
 
-            // get user input
-            Console.Write("Enter package code (A-D): ");
+            // 1. Customer input
+            Console.Write("Enter your name: ");
+            string customerName = Console.ReadLine();
+
+            Console.Write("Enter your package code (A/B/C/D): ");
             string packageCode = Console.ReadLine().Trim().ToUpper();
 
-            Console.Write("Would you like a drink? (Y/N): ");
+            Console.Write("Would you like to add a drink? (Y/N): ");
             string drinkChoice = Console.ReadLine().Trim().ToUpper();
 
-            Console.Write("Enter quantity: ");
+            Console.Write("How many combos would you like? ");
             int quantity = int.Parse(Console.ReadLine());
 
-            // declare prices
+            // 2. Variable declarations
+            string comboName = "";
             double price = 0.0;
 
-            // determine price based on selection
+            // 3. Determine combo name and price
             switch (packageCode)
             {
                 case "A":
+                    comboName = "3 Tacos Combo";
                     price = (drinkChoice == "Y") ? 9.00 : 7.00;
                     break;
                 case "B":
+                    comboName = "Burrito Meal";
                     price = (drinkChoice == "Y") ? 10.50 : 8.50;
                     break;
                 case "C":
+                    comboName = "Quesadilla Special";
                     price = (drinkChoice == "Y") ? 8.00 : 6.00;
                     break;
                 case "D":
+                    comboName = "Loaded Nachos";
                     price = (drinkChoice == "Y") ? 7.75 : 5.75;
                     break;
                 default:
-                    Console.WriteLine("Invalid package code. Please restart the program.");
+                    Console.WriteLine("\nInvalid package code. Please restart the program.");
                     return;
             }
 
-            // calculate subtotal, tax, and total
+            // 4. Calculations
             double subtotal = price * quantity;
             double taxRate = 0.095;
             double tax = subtotal * taxRate;
             double total = subtotal + tax;
-
-            // check for free dessert
             bool freeDessert = subtotal >= 20.00;
 
-            // display receipt
-            Console.WriteLine("\n========== RECEIPT ==========");
-            Console.WriteLine($"Combo Selected: {packageCode}");
-            Console.WriteLine($"With Drink: {(drinkChoice == "Y" ? "Yes" : "No")}");
+            // 5. Display receipt
+            Console.WriteLine("\n=========== TACO LOCO RECEIPT ===========");
+            Console.WriteLine($"Customer Name: {customerName}");
+            Console.WriteLine($"Combo Ordered: {comboName}");
+            Console.WriteLine($"Drink Included: {(drinkChoice == "Y" ? "Yes" : "No")}");
             Console.WriteLine($"Quantity: {quantity}");
-            Console.WriteLine($"Price per Combo: ${price:F2}");
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine($"Price Per Item: ${price:F2}");
             Console.WriteLine($"Subtotal: ${subtotal:F2}");
             Console.WriteLine($"Tax (9.5%): ${tax:F2}");
-            Console.WriteLine($"Total: ${total:F2}");
-            Console.WriteLine("-----------------------------");
-            if (freeDessert)
-                Console.WriteLine("Congratulations! You earned a FREE dessert!");
-            else
-                Console.WriteLine("Spend $20 or more next time to get a free dessert!");
-            Console.WriteLine("=============================");
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine($"Total Cost: ${total:F2}");
 
-            Console.WriteLine("\nThank you for ordering from Taco Loco!");
+            if (freeDessert)
+                Console.WriteLine("Congratulations! You get a free dessert!");
+            else
+                Console.WriteLine("Spend $20 or more next time to earn a free dessert!");
+
+            Console.WriteLine("=========================================");
+            Console.WriteLine("Thank you for supporting Taco Loco!");
         }
     }
 }
