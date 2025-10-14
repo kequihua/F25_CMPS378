@@ -1,0 +1,81 @@
+using System;
+
+namespace StreetFoodPOS
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Taco Loco Street Food POS System
+            Console.WriteLine("=== Taco Loco Street Food Truck POS ===\n");
+
+            // display menu
+            Console.WriteLine("Menu:");
+            Console.WriteLine("A - 3 Tacos Combo ........... $7.00 (No Drink) / $9.00 (With Drink)");
+            Console.WriteLine("B - Burrito Meal ............ $8.50 (No Drink) / $10.50 (With Drink)");
+            Console.WriteLine("C - Quesadilla Special ...... $6.00 (No Drink) / $8.00 (With Drink)");
+            Console.WriteLine("D - Loaded Nachos ........... $5.75 (No Drink) / $7.75 (With Drink)");
+            Console.WriteLine();
+
+            // get user input
+            Console.Write("Enter package code (A-D): ");
+            string packageCode = Console.ReadLine().Trim().ToUpper();
+
+            Console.Write("Would you like a drink? (Y/N): ");
+            string drinkChoice = Console.ReadLine().Trim().ToUpper();
+
+            Console.Write("Enter quantity: ");
+            int quantity = int.Parse(Console.ReadLine());
+
+            // declare prices
+            double price = 0.0;
+
+            // determine price based on selection
+            switch (packageCode)
+            {
+                case "A":
+                    price = (drinkChoice == "Y") ? 9.00 : 7.00;
+                    break;
+                case "B":
+                    price = (drinkChoice == "Y") ? 10.50 : 8.50;
+                    break;
+                case "C":
+                    price = (drinkChoice == "Y") ? 8.00 : 6.00;
+                    break;
+                case "D":
+                    price = (drinkChoice == "Y") ? 7.75 : 5.75;
+                    break;
+                default:
+                    Console.WriteLine("Invalid package code. Please restart the program.");
+                    return;
+            }
+
+            // calculate subtotal, tax, and total
+            double subtotal = price * quantity;
+            double taxRate = 0.095;
+            double tax = subtotal * taxRate;
+            double total = subtotal + tax;
+
+            // check for free dessert
+            bool freeDessert = subtotal >= 20.00;
+
+            // display receipt
+            Console.WriteLine("\n========== RECEIPT ==========");
+            Console.WriteLine($"Combo Selected: {packageCode}");
+            Console.WriteLine($"With Drink: {(drinkChoice == "Y" ? "Yes" : "No")}");
+            Console.WriteLine($"Quantity: {quantity}");
+            Console.WriteLine($"Price per Combo: ${price:F2}");
+            Console.WriteLine($"Subtotal: ${subtotal:F2}");
+            Console.WriteLine($"Tax (9.5%): ${tax:F2}");
+            Console.WriteLine($"Total: ${total:F2}");
+            Console.WriteLine("-----------------------------");
+            if (freeDessert)
+                Console.WriteLine("Congratulations! You earned a FREE dessert!");
+            else
+                Console.WriteLine("Spend $20 or more next time to get a free dessert!");
+            Console.WriteLine("=============================");
+
+            Console.WriteLine("\nThank you for ordering from Taco Loco!");
+        }
+    }
+}
