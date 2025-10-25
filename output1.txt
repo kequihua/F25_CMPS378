@@ -1,0 +1,30 @@
+****** Welcome to Freelance Project Income Tracker ******
+
+Enter your name: kimberly equihua
+How many projects would you like to enter? 3
+
+Project #1:
+Enter project name: website design 
+Enter hours worked: 15.5
+Enter hourly rate: 35
+
+Project #2:
+Enter project name: seo optimization 
+Enter hours worked: 10
+Enter hourly rate: 40
+
+Project #3:
+Enter project name: advanced
+Enter hours worked: 17
+Enter hourly rate: 34
+
+========== FREELANCE INCOME SUMMARY ==========
+Freelancer Name: kimberly equihua
+Projects Logged: 3
+Total Income: $1520.50
+Average Project Income: $506.83
+Highest-Earning Project: advanced ($578.00)
+==============================================
+Thank you for using the Income Tracker!
+
+=== Code Execution Successful ===

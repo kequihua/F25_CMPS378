@@ -1,0 +1,27 @@
+
+****** Welcome to Monthly Expense Tracker ******
+
+Enter your name: kim
+
+Enter expense category (or type 'done' to stop): groceries
+Enter amount (or -1 to quit): 120.50
+
+Enter expense category (or type 'done' to stop): rent
+Enter amount (or -1 to quit): 1350
+
+Enter expense category (or type 'done' to stop): entertainment
+Enter amount (or -1 to quit): 300
+
+Enter expense category (or type 'done' to stop): utilities
+Enter amount (or -1 to quit): -1
+
+========== MONTHLY EXPENSE SUMMARY ==========
+Name: kim
+Total Entries: 3
+Total Amount Spent: $1770.50
+Average Expense: $590.17
+Highest Spending Category: rent
+============================================
+Thank you for using the Monthly Expense Tracker!
+
+=== Code Execution Successful ===

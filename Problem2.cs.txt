@@ -1,0 +1,88 @@
+/*
+ * Author: Kimberly Equihua
+ * Course: CMPS 378 – C# Programming, Fall 2025
+ * Problem 2: Real-World Budgeting App
+ *
+ * Description:
+ * This console-based program helps users track their monthly expenses.
+ * The user can enter multiple expense categories and amounts until they enter -1 to stop.
+ * It then calculates the total expenses, average expense, and identifies
+ * which category had the highest total spending.
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MonthlyExpenseTracker
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+          
+            Console.WriteLine("****** Welcome to Monthly Expense Tracker ******\n");
+
+            // Step 1: Ask for user name
+            Console.Write("Enter your name: ");
+            string name = Console.ReadLine();
+
+            // Dictionary to track total spending by category
+            Dictionary<string, double> expenses = new Dictionary<string, double>();
+
+            int count = 0;             // Number of expense entries
+            double totalAmount = 0.0;  // Total amount spent
+
+            // Step 2: Start expense entry loop
+            while (true)
+            {
+                Console.Write("\nEnter expense category (or type 'done' to stop): ");
+                string category = Console.ReadLine();
+
+                // Allow both -1 and 'done' to quit
+                if (category.ToLower() == "done")
+                    break;
+
+                Console.Write("Enter amount (or -1 to quit): ");
+                double amount = double.Parse(Console.ReadLine());
+
+                if (amount == -1)
+                    break; // stop if sentinel value entered
+
+                // Validate positive expense amount
+                if (amount < 0)
+                {
+                    Console.WriteLine("Invalid entry. Please enter a positive amount.");
+                    continue;
+                }
+
+                // Add to totals
+                totalAmount += amount;
+                count++;
+
+                // Track spending by category
+                if (expenses.ContainsKey(category))
+                    expenses[category] += amount;
+                else
+                    expenses[category] = amount;
+            }
+
+            // Step 3: Calculate averages and find highest category
+            double averageExpense = (count > 0) ? totalAmount / count : 0;
+            string highestCategory = (expenses.Count > 0)
+                ? expenses.Aggregate((x, y) => x.Value > y.Value ? x : y).Key
+                : "N/A";
+
+            // Step 4: Display final summary
+            Console.WriteLine("\n========== MONTHLY EXPENSE SUMMARY ==========");
+            Console.WriteLine($"Name: {name}");
+            Console.WriteLine($"Total Entries: {count}");
+            Console.WriteLine($"Total Amount Spent: ${totalAmount:F2}");
+            Console.WriteLine($"Average Expense: ${averageExpense:F2}");
+            Console.WriteLine($"Highest Spending Category: {highestCategory}");
+            Console.WriteLine("============================================");
+            Console.WriteLine("Thank you for using the Monthly Expense Tracker!");
+        }
+    }
+}
+
